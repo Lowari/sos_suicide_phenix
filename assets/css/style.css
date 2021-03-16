@@ -1,0 +1,46 @@
+#mainHeader
+{
+    background-color: aliceblue;
+}
+#sizeNav{
+    font-size: 1.3rem;
+}
+.navii
+{
+    background-color: aliceblue;
+}
+.info{
+   font-size: 1.2rem;
+}
+.green{
+    color: rgb(120, 181, 41);
+}
+#phenix{
+    width: 3.5rem;
+}
+.noDecoration {
+    text-decoration: none;
+    color: rgb(120, 181, 41);
+}
+footer{
+    background-color: aliceblue;
+}
+.white {
+    color: white;
+}
+.link:hover{
+    text-decoration: none;
+    color: orange;
+}
+.title-decoration {
+    text-decoration: underline overline rgb(120, 181, 41);
+}
+p{
+    font-size: 1.2rem;
+}
+.mainConnexion {
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    height: 97vh;
+}
