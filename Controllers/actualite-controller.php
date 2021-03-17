@@ -50,5 +50,10 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if (isset($_POST['delete'])) {
+    $thisActu = $_POST['delete'];
+    $deleteActu = $Actualite->deleteActualite($thisActu);
+}
+
 $readActualite = $Actualite->readActualite();
 $showThisActu = $Actualite->showThisActualite($id);

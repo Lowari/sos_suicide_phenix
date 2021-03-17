@@ -150,4 +150,12 @@ class Actualite extends Database
         return $buildQuery->execute();
     }
 
+    public function deleteActualite($thisActu)
+    {
+        $query = "DELETE FROM `actualite` WHERE `id` = :thisActu;";
+        $buildQuery = parent::getDb()->prepare($query);
+
+        $buildQuery->bindParam('thisActu', $thisActu);
+        $buildQuery->execute();
+    }
 }

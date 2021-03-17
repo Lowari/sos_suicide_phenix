@@ -87,14 +87,17 @@ require "../Controllers/actualite-controller.php";
                 </form>
             <?php } ?>
 
-            <?php if (isset($id)) { ?>
+            <?php if (isset($id) && !empty($readActualite)) { ?>
                 <h1 class="text-center"><?= $showThisActu['title'] ?></h1>
                 <p class="text-center"><?= $showThisActu['description'] ?></p>
                 <p class="text-center"><?= $showThisActu['picture_name'] ?></p>
 
-                <?php if ($_SESSION['user']['id_role'] == 1 && !empty($id)) { ?>
+                <?php if (isset($_SESSION) && $_SESSION['user']['id_role'] == 1 && !empty($id)) { ?>
                     <div class="text-center">
                         <a class="btn btn-success" href="modification-actualite.php?id=<?= $showThisActu['id'] ?>">Modifier</a>
+                        <form action="actualite.php" method="POST">
+                            <button class="btn btn-danger" type="submit" name="delete" value="<?= $showThisActu['id'] ?>">Supprimer</button>
+                        </form>
                     </div>
             <?php }
             } ?>
@@ -126,9 +129,18 @@ require "../Controllers/actualite-controller.php";
         <?php } ?>
 
         <ul>
-            <?php foreach ($readActualite as $key => $value) { ?>
-                <li><a href="actualite.php?id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
-            <?php } ?>
+            <?php if (isset($readActualite) && !empty($readActualite)) {
+                foreach ($readActualite as $key => $value) { ?>
+                    <li><a href="actualite.php?id=<?= $value['id'] ?>"><?= $value['title'] ?></a>
+                        <?php if (isset($_SESSION) && $_SESSION['user']['id_role'] == 1) { ?>
+                        <a class="btn btn-success" href="modification-actualite.php?id=<?= $value['id'] ?>">Modifier</a>
+                            <form action="actualite.php" method="POST">
+                                <button class="btn btn-danger" type="submit" name="delete" value="<?= $value['id'] ?>">Supprimer</button>
+                            </form>
+                        <?php } ?>
+                    </li>
+            <?php }
+            } ?>
         </ul>
     </div>
 
