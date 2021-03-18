@@ -39,7 +39,7 @@ if (isset($_POST['connect'])) {
             $passwordDb = $checkUser['password'];
             if (password_verify($password, $passwordDb)) {
                 $user = [];
-                $user['lastname'] = $checkUser['lastname'];
+                $user['firstname'] = $checkUser['firstname'];
                 $user['lastname'] = $checkUser['lastname'];
                 $user['mail'] = $checkUser['mail'];
                 $user['phone'] = $checkUser['phone'];

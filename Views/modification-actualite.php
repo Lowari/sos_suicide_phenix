@@ -1,7 +1,6 @@
 <?php
 
 require "../Controllers/modification-actualite-controller.php";
-var_dump($showThisActu);
 
 ?>
 <!DOCTYPE html>

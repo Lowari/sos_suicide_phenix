@@ -5,9 +5,6 @@ class Role extends Database
     private $id;
     private $role;
 
-
-
-
     /**
      * Get the value of id
      */

@@ -7,8 +7,7 @@ require "Controllers/index-controller.php";
 <html lang="fr">
 
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
@@ -21,10 +20,22 @@ require "Controllers/index-controller.php";
   <header>
     <div class="container-fluid" id="mainHeader">
 
+      <?php if (isset($_SESSION['user'])) { ?>
+        <nav class="navbar navbar-expand-lg navbar-light navii">
+          <div class="navbar-collapse justify-content-end">
+            <div class="navbar-nav">
+              <form class="mt-3" action="actualite.php" method="POST">
+                <a>Bonjour <?= $_SESSION['user']['firstname'] ?></a>
+                <a><button class="btn btn-danger text-end" type="submit" name="offline">Deconexion</button></a>
+              </form>
+            </div>
+          </div>
+        </nav>
+      <?php } ?>
+
       <nav class="navbar navbar-expand-lg navbar-light navii">
         <a class="navbar-brand" href="#"><img id="phenix" src="assets/img/phenix1.jpeg" alt="Phénix"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse d-flex-lg justify-content-center" id="navbarNavAltMarkup">
@@ -51,8 +62,7 @@ require "Controllers/index-controller.php";
           </div>
 
           <div class="col-sm-12 col-md-6 col-lg-4 align-self-center font-weight-bolder info">
-            <p>Idées suicidaires, en mal-être ?<br><i class="far fa-envelope green"></i><span class="green"><a
-                  href="mailto:sos-suicide-lehavre@orange.fr" class="noDecoration link" id="test"> Nous
+            <p>Idées suicidaires, en mal-être ?<br><i class="far fa-envelope green"></i><span class="green"><a href="mailto:sos-suicide-lehavre@orange.fr" class="noDecoration link" id="test"> Nous
                   écrire</a> </span><br>Nos bénévoles vous
               répondent</p>
           </div>
@@ -100,15 +110,9 @@ require "Controllers/index-controller.php";
   </footer>
 
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   <script src="assets/js/script.js"></script>
 
 </body>

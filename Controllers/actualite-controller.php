@@ -14,6 +14,12 @@ $successMessage = [];
 
 $regexText = "#^[\\r\\n0-9a-zé'èçàâêîôûäëïöüù:_*(), -]{1,1000}$#i";
 
+if (isset($_POST['offline'])) {
+    $_SESSION = [];
+    session_destroy();
+    header("Location:connexion.php");
+}
+
 if (isset($_POST['submit'])) {
     if (isset($_POST['title'])) {
         $title = $_POST['title'];

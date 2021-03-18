@@ -23,12 +23,25 @@ require "../Controllers/actualite-controller.php";
     <header>
         <div class="container-fluid" id="mainHeader">
 
+            <?php if (isset($_SESSION['user'])) { ?>
+                <nav class="navbar navbar-expand-lg navbar-light navii">
+                    <div class="navbar-collapse justify-content-end">
+                        <div class="navbar-nav">
+                            <form class="mt-3" action="actualite.php" method="POST">
+                                <a>Bonjour <?= $_SESSION['user']['firstname'] ?></a>
+                                <a><button class="btn btn-danger text-end" type="submit" name="offline">Deconexion</button></a>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            <?php } ?>
+
             <nav class="navbar navbar-expand-lg navbar-light navii">
                 <a class="navbar-brand" href="#"><img id="phenix" src="../assets/img/phenix1.jpeg" alt="Phénix"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-flex-lg justify-content-center" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
                     <div class="navbar-nav text-center" id="sizeNav">
                         <a class="nav-link" href="../index.php">Accueil</a>
                         <a class="nav-link" href="">Actualités</a>
@@ -88,22 +101,32 @@ require "../Controllers/actualite-controller.php";
             <?php } ?>
 
             <?php if (isset($id) && !empty($readActualite)) { ?>
-                <h1 class="text-center"><?= $showThisActu['title'] ?></h1>
-                <p class="text-center"><?= $showThisActu['description'] ?></p>
-                <p class="text-center"><?= $showThisActu['picture_name'] ?></p>
 
-                <?php if (isset($_SESSION) && $_SESSION['user']['id_role'] == 1 && !empty($id)) { ?>
-                    <div class="text-center">
-                        <a class="btn btn-success" href="modification-actualite.php?id=<?= $showThisActu['id'] ?>">Modifier</a>
-                        <form action="actualite.php" method="POST">
-                            <button class="btn btn-danger" type="submit" name="delete" value="<?= $showThisActu['id'] ?>">Supprimer</button>
-                        </form>
+                <div class="mt-4">
+
+                    <h1 class="text-center"><?= $showThisActu['title'] ?></h1>
+                    <p class="text-center"><?= $showThisActu['description'] ?></p>
+                    <p class="text-center"><?= $showThisActu['picture_name'] ?></p>
+
+                </div>
+
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_role'] == 1 && !empty($id)) { ?>
+                    <div class="text-center row">
+                        <div class="col">
+                            <a class="btn btn-success" href="modification-actualite.php?id=<?= $showThisActu['id'] ?>">Modifier</a>
+                        </div>
+                        <div class="col">
+                            <form action="actualite.php" method="POST">
+                                <button class="btn btn-danger" type="submit" name="delete" value="<?= $showThisActu['id'] ?>">Supprimer</button>
+                            </form>
+                        </div>
                     </div>
             <?php }
             } ?>
         </div>
 
-        <?php if ($_SESSION['user']['id_role'] == 1 && !isset($_POST['modify'])) { ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_role'] == 1) { ?>
+
             <form action="actualite.php" method="POST">
 
                 <div>
@@ -126,14 +149,15 @@ require "../Controllers/actualite-controller.php";
                 </div>
 
             </form>
+
         <?php } ?>
 
         <ul>
             <?php if (isset($readActualite) && !empty($readActualite)) {
                 foreach ($readActualite as $key => $value) { ?>
                     <li><a href="actualite.php?id=<?= $value['id'] ?>"><?= $value['title'] ?></a>
-                        <?php if (isset($_SESSION) && $_SESSION['user']['id_role'] == 1) { ?>
-                        <a class="btn btn-success" href="modification-actualite.php?id=<?= $value['id'] ?>">Modifier</a>
+                        <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_role'] == 1) { ?>
+                            <a class="btn btn-success" href="modification-actualite.php?id=<?= $value['id'] ?>">Modifier</a>
                             <form action="actualite.php" method="POST">
                                 <button class="btn btn-danger" type="submit" name="delete" value="<?= $value['id'] ?>">Supprimer</button>
                             </form>
